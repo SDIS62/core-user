@@ -1,44 +1,48 @@
 {
-    "name": "sdis62/:package_name",
+    "name": "sdis62/core-user",
 
-    "description": ":package_description",
+    "description": "PSR4 package donnant la possibilité de gérer des utilisateurs dans un coeur applicatif",
 
     "keywords": [
         "sdis62",
-        ":package_name"
+        "core-user"
     ],
 
-    "homepage": "https://github.com/SDIS62/:package_name",
+    "homepage": "https://github.com/SDIS62/core-user",
 
     "license": "CeCILL-B",
 
     "authors": [
         {
             "role": "Developer",
-            "name": ":author_name",
-            "email": ":author_email",
-            "homepage": ":author_website"
+            "name": "Kevin DUBUC",
+            "email": "kdubuc@sdis62.fr",
+            "homepage": "http://kevindubuc.fr"
         }
     ],
 
     "require": {
-        "php": "~5.4"
+        "php": "~5.4",
+        "sdis62/core-common": "~0.1",
+        "doctrine/common": "~2.4",
+        "giggsey/libphonenumber-for-php": "~7.0"
     },
 
     "require-dev": {
         "phpunit/phpunit": "~4.0",
-        "fabpot/php-cs-fixer": "~1.0"
+        "fabpot/php-cs-fixer": "~1.0",
+        "mockery/mockery": "~0.9"
     },
 
     "autoload": {
         "psr-4": {
-            "SDIS62\\Skeleton\\": "src/"
+            "SDIS62\\Core\\User\\": "src/"
         }
     },
 
     "autoload-dev": {
         "psr-4": {
-            "SDIS62\\Skeleton\\Test\\": "tests/"
+            "SDIS62\\Core\\User\\Test\\": "tests/"
         }
     }
 }

@@ -30,4 +30,15 @@ class PersonnelTechniqueSdisProfileTest extends PHPUnit_Framework_TestCase
         self::$object->setGrade(self::$object->getGrade());
         $this->assertInstanceOf('SDIS62\Core\User\Entity\Grade\TechniqueGrade', self::$object->getGrade());
     }
+
+    public function test_if_it_throw_an_exception_if_grade_is_not_correspond_with_profile()
+    {
+        try {
+            self::$object->setGrade(new Core\Entity\Grade\AdministratifGrade('Redacteur', 10));
+        } catch (Core\Exception\InvalidGradeException $e) {
+            return;
+        }
+
+        $this->fail('Exception must be throw');
+    }
 }

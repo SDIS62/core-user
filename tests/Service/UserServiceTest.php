@@ -152,8 +152,8 @@ class UserServiceTest extends PHPUnit_Framework_TestCase
             'last_name' => 'DUBUC',
             'email' => 'kdubuc@sdis62.fr',
             'profiles' => array(
-                array('type' => 'maire', 'code_insee' => '62000')
-            )
+                array('type' => 'maire', 'code_insee' => '62000'),
+            ),
         );
 
         $user = self::$object->save($user_informations);

@@ -10,7 +10,7 @@ class GradeService
     /**
      * Initialisation du service avec les repository utilisés
      *
-     * @param SDIS62\Core\User\Repository\GradeRepositoryInterface   $grade_repository
+     * @param SDIS62\Core\User\Repository\GradeRepositoryInterface $grade_repository
      */
     public function __construct(GradeRepositoryInterface $grade_repository)
     {
@@ -18,31 +18,31 @@ class GradeService
     }
 
     /**
-    * Retourne un ensemble de grades
-    *
-    * @return SDIS62\Core\User\Entity\Grade[]
-    */
+     * Retourne un ensemble de grades
+     *
+     * @return SDIS62\Core\User\Entity\Grade[]
+     */
     public function getAll()
     {
         return $this->grade_repository->getAll();
     }
 
     /**
-    * Retourne un grade correspondant à l'id spécifié
-    *
-    * @param  int                           $id_grade
-    * @return SDIS62\Core\User\Entity\Grade
-    */
+     * Retourne un grade correspondant à l'id spécifié
+     *
+     * @param  int                           $id_grade
+     * @return SDIS62\Core\User\Entity\Grade
+     */
     public function find($id_grade)
     {
         return $this->grade_repository->find($id_grade);
     }
 
     /**
-    * Suppression d'un grade
-    *
-    * @param int $id ID du grade à supprimer
-    */
+     * Suppression d'un grade
+     *
+     * @param int $id ID du grade à supprimer
+     */
     public function delete($id)
     {
         $grade = $this->find($id);

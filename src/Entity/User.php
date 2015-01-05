@@ -141,7 +141,8 @@ class User
         };
 
         if ($this->getProfiles()->exists($detect_spp_profile)) {
-            $prefix = prev($this->getProfiles()->toArray())->getGrade()->getLabel().' ';
+            $profiles = $this->getProfiles()->toArray();
+            $prefix = prev($profiles)->getGrade()->getLabel().' ';
         } else {
             $prefix = '';
         }
@@ -316,7 +317,7 @@ class User
     {
         $this->profiles->clear();
 
-        foreach($profiles as $profile) {
+        foreach ($profiles as $profile) {
             $this->addProfile($profile);
         }
 

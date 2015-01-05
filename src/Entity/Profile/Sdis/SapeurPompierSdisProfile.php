@@ -2,8 +2,10 @@
 
 namespace SDIS62\Core\User\Entity\Profile\Sdis;
 
+use SDIS62\Core\User\Entity\Grade;
 use SDIS62\Core\User\Entity\Profile\SdisProfile;
 use SDIS62\Core\User\Entity\Grade\SapeurPompierGrade;
+use SDIS62\Core\User\Exception\InvalidGradeException;
 
 class SapeurPompierSdisProfile extends SdisProfile
 {
@@ -36,12 +38,17 @@ class SapeurPompierSdisProfile extends SdisProfile
     /**
      * Set the value of Grade
      *
-     * @param SDIS62\Core\User\Entity\Grade\SapeurPompierGrade grade
+     * @param SDIS62\Core\User\Entity\Grade grade
+     * @throws InvalidGradeException Si le grade donné n'est pas compatible avec le profil
      *
      * @return self
      */
-    public function setGrade(SapeurPompierGrade $value)
+    public function setGrade(Grade $value)
     {
+        if (! $value instanceof SapeurPompierGrade) {
+            throw new InvalidGradeException('Un sapeur pompier ne peut qu\'avoir un grade de type sapeur pompier.');
+        }
+
         $this->grade = $value;
 
         return $this;

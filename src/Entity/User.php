@@ -136,15 +136,13 @@ class User
      */
     public function getFullName()
     {
-        $detect_spp_profile = function ($key, $profile) {
-            return $profile instanceof Profile\Sdis\SapeurPompierSdisProfile && $profile->isPro();
-        };
+        $prefix = '';
 
-        if ($this->getProfiles()->exists($detect_spp_profile)) {
-            $profiles = $this->getProfiles()->toArray();
-            $prefix = prev($profiles)->getGrade()->getLabel().' ';
-        } else {
-            $prefix = '';
+        foreach ($this->getProfiles() as $profile) {
+            if ($profile instanceof Profile\Sdis\SapeurPompierSdisProfile && $profile->isPro()) {
+                $prefix = $profile->getGrade()->getLabel().' ';
+                break;
+            }
         }
 
         return $prefix.$this->getLastName().' '.$this->getFirstName();

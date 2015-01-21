@@ -2,15 +2,15 @@
 
 namespace SDIS62\Core\User\Entity\Profile;
 
+use SDIS62\Core\User\Entity\User;
 use SDIS62\Core\User\Entity\Profile;
-use SDIS62\Core\User\Entity\Grade;
 
 abstract class SdisProfile extends Profile
 {
     /**
      * Grade
      *
-     * @var SDIS62\Core\User\Entity\Grade
+     * @var string
      */
     protected $grade;
 
@@ -24,19 +24,22 @@ abstract class SdisProfile extends Profile
     /*
     * Constructeur
     *
-    * @param SDIS62\Core\User\Entity\Grade $grade
+    * @param SDIS62\Core\User\Entity\User $user
+    * @param string $grade
     * @param string $poste
     */
-    public function __construct(Grade $grade, $poste)
+    public function __construct(User $user, $grade, $poste)
     {
         $this->grade = $grade;
         $this->poste = $poste;
+
+        parent::__construct($user);
     }
 
     /**
      * Get the value of Grade
      *
-     * @return SDIS62\Core\User\Entity\Grade
+     * @return string
      */
     public function getGrade()
     {
@@ -44,13 +47,13 @@ abstract class SdisProfile extends Profile
     }
 
     /**
-     * Set the value of Grade
+     * Change le grade associé au profil
      *
-     * @param SDIS62\Core\User\Entity\Grade grade
+     * @param string grade
      *
      * @return self
      */
-    public function setGrade(Grade $value)
+    public function promote($value)
     {
         $this->grade = $value;
 

@@ -41,18 +41,18 @@ class User
      */
     protected $birthday;
 
-    /**
-     * URL de l'avatar de l'utilisateur
-     *
-     * @var string|null
-     */
+     /**
+      * URL de l'avatar de l'utilisateur
+      *
+      * @var string|null
+      */
      protected $profile_pic_url;
 
-    /**
-     * Email
-     *
-     * @var string|null
-     */
+     /**
+      * Email
+      *
+      * @var string|null
+      */
      protected $email;
 
     /**
@@ -141,7 +141,7 @@ class User
 
         foreach ($this->getProfiles() as $profile) {
             if ($profile instanceof Profile\Sdis\SapeurPompierSdisProfile && $profile->isPro()) {
-                $prefix = $profile->getGrade()->getLabel().' ';
+                $prefix = $profile->getGrade().' ';
                 break;
             }
         }

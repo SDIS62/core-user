@@ -15,6 +15,14 @@ interface ProfileRepositoryInterface
     public function find($id_profile);
 
     /**
+     * Retourne les profils d'un utilisateur
+     *
+     * @param  int                               $id_user
+     * @return SDIS62\Core\User\Entity\Profile[]
+     */
+    public function findAllByUser($id_user);
+
+    /**
      * Sauvegarde d'un profil
      *
      * @param  SDIS62\Core\User\Entity\Profile

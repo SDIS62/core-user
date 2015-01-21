@@ -11,8 +11,11 @@ class PersonnelTechniqueSdisProfileTest extends PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $grade = new Core\Entity\Grade\TechniqueGrade('Ingenieur', 10);
-        self::$object = new Core\Entity\Profile\Sdis\PersonnelTechniqueSdisProfile($grade, 'Chef de sercie paie');
+        self::$object = new Core\Entity\Profile\Sdis\PersonnelTechniqueSdisProfile(
+            new Core\Entity\User('male', 'kevin', 'dubuc', 'kdubuc@sdis62.fr'),
+            'Ingenieur',
+            'Developpeur'
+        );
     }
 
     public function test_if_it_is_initializable()
@@ -20,25 +23,28 @@ class PersonnelTechniqueSdisProfileTest extends PHPUnit_Framework_TestCase
         $this->assertInstanceOf('SDIS62\Core\User\Entity\Profile\Sdis\PersonnelTechniqueSdisProfile', self::$object);
     }
 
+    public function test_if_it_have_good_implementation()
+    {
+        $this->assertInstanceOf('SDIS62\Core\User\Entity\Profile', self::$object);
+    }
+
+    public function test_if_it_have_a_user()
+    {
+        $this->assertInstanceOf('SDIS62\Core\User\Entity\User', self::$object->getUser());
+    }
+
     public function test_if_it_have_a_type_personnel_technique()
     {
         $this->assertEquals('personnel_technique', self::$object->getType());
     }
 
-    public function test_if_it_have_a_technique_grade()
+    public function test_if_it_have_a_grade()
     {
-        self::$object->setGrade(self::$object->getGrade());
-        $this->assertInstanceOf('SDIS62\Core\User\Entity\Grade\TechniqueGrade', self::$object->getGrade());
+        $this->assertEquals('Ingenieur', self::$object->getGrade());
     }
 
-    public function test_if_it_throw_an_exception_if_grade_is_not_correspond_with_profile()
+    public function test_if_it_have_a_poste()
     {
-        try {
-            self::$object->setGrade(new Core\Entity\Grade\AdministratifGrade('Redacteur', 10));
-        } catch (Core\Exception\InvalidGradeException $e) {
-            return;
-        }
-
-        $this->fail('Exception must be throw');
+        $this->assertEquals('Developpeur', self::$object->getPoste());
     }
 }

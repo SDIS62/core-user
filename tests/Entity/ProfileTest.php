@@ -12,7 +12,7 @@ class ProfileTest extends PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $mock = Mockery::mock('SDIS62\Core\User\Entity\Profile')->makePartial();
+        $mock = Mockery::mock('SDIS62\Core\User\Entity\Profile', array(new Core\Entity\User('male', 'kevin', 'dubuc', 'kdubuc@sdis62.fr')))->makePartial();
 
         self::$object = $mock;
     }
@@ -21,6 +21,13 @@ class ProfileTest extends PHPUnit_Framework_TestCase
     {
         self::$object->setId(10);
         $this->assertEquals(10, self::$object->getId());
+    }
+
+    public function test_if_it_have_a_user()
+    {
+        $this->assertInstanceOf('SDIS62\Core\User\Entity\User', self::$object->getUser());
+        $this->assertCount(1, self::$object->getUser()->getProfiles());
+        $this->assertEquals(self::$object, self::$object->getUser()->getProfiles()[0]);
     }
 
     public function test_if_it_have_a_phone_number()

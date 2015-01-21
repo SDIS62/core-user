@@ -79,13 +79,10 @@ class UserTest extends PHPUnit_Framework_TestCase
 
     public function test_if_it_have_a_fullname_prefixed_with_the_spp_profile()
     {
-        $profile_spv = new Core\Entity\Profile\Sdis\SapeurPompierSdisProfile(new Core\Entity\Grade\SapeurPompierGrade('Lieutenant', 10), 'Directeur');
-        $profile_spp = new Core\Entity\Profile\Sdis\SapeurPompierSdisProfile(new Core\Entity\Grade\SapeurPompierGrade('Colonel', 10), 'Directeur', true);
-
-        self::$object->addProfile($profile_spv);
-        self::$object->addProfile($profile_spv);
-        self::$object->addProfile($profile_spp);
-        self::$object->addProfile($profile_spv);
+        $profile_spv1 = new Core\Entity\Profile\Sdis\SapeurPompierSdisProfile(self::$object, 'Lieutenant', 'Directeur');
+        $profile_spv2 = new Core\Entity\Profile\Sdis\SapeurPompierSdisProfile(self::$object, 'Lieutenant', 'Directeur');
+        $profile_spp3 = new Core\Entity\Profile\Sdis\SapeurPompierSdisProfile(self::$object, 'Colonel', 'Directeur', true);
+        $profile_spv4 = new Core\Entity\Profile\Sdis\SapeurPompierSdisProfile(self::$object, 'Lieutenant', 'Directeur');
 
         $this->assertEquals('Colonel DUBUC Jean-Francois', self::$object->getFullName());
         $this->assertInternalType('string', self::$object->getFullName());
@@ -154,20 +151,20 @@ class UserTest extends PHPUnit_Framework_TestCase
         $this->fail('Exception must be throw');
     }
 
-    public function test_if_it_can_set_profiles()
+    public function test_if_it_have_profiles()
     {
-        $grade = new Core\Entity\Grade\SapeurPompierGrade('Colonel', 10);
+        $this->assertInstanceOf('Doctrine\Common\Collections\ArrayCollection', self::$object->getProfiles());
 
-        $profile_spv = new Core\Entity\Profile\Sdis\SapeurPompierSdisProfile($grade, 'Directeur');
-        $profile_spp = new Core\Entity\Profile\Sdis\SapeurPompierSdisProfile($grade, 'Directeur', true);
-
-        self::$object->setProfiles(array($profile_spv, $profile_spp));
+        $profile_spv = new Core\Entity\Profile\Sdis\SapeurPompierSdisProfile(self::$object, 'Colonel', 'Directeur');
+        $profile_spp = new Core\Entity\Profile\Sdis\SapeurPompierSdisProfile(self::$object, 'Colonel', 'Directeur', true);
 
         $this->assertCount(2, self::$object->getProfiles());
+        $this->assertInstanceOf('Doctrine\Common\Collections\ArrayCollection', self::$object->getProfiles());
 
         self::$object->setProfiles(array($profile_spp));
 
         $this->assertCount(1, self::$object->getProfiles());
+        $this->assertInstanceOf('Doctrine\Common\Collections\ArrayCollection', self::$object->getProfiles());
         $this->assertNull(self::$object->getProfiles()[1]);
         $this->assertEquals($profile_spp, self::$object->getProfiles()[0]);
     }

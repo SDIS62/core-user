@@ -11,12 +11,22 @@ class MaireProfileTest extends PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        self::$object = new Core\Entity\Profile\MaireProfile(62000);
+        self::$object = new Core\Entity\Profile\MaireProfile(new Core\Entity\User('male', 'kevin', 'dubuc', 'kdubuc@sdis62.fr'), 62000);
     }
 
     public function test_if_it_is_initializable()
     {
         $this->assertInstanceOf('SDIS62\Core\User\Entity\Profile\MaireProfile', self::$object);
+    }
+
+    public function test_if_it_have_good_implementation()
+    {
+        $this->assertInstanceOf('SDIS62\Core\User\Entity\Profile', self::$object);
+    }
+
+    public function test_if_it_have_a_user()
+    {
+        $this->assertInstanceOf('SDIS62\Core\User\Entity\User', self::$object->getUser());
     }
 
     public function test_if_it_have_a_type_maire()

@@ -2,6 +2,7 @@
 
 namespace SDIS62\Core\User\Entity\Profile;
 
+use SDIS62\Core\User\Entity\User;
 use SDIS62\Core\User\Entity\Profile;
 
 class MaireProfile extends Profile
@@ -23,11 +24,14 @@ class MaireProfile extends Profile
     /*
     * Constructeur
     *
+    * @param SDIS62\Core\User\Entity\User $user
     * @param string code insee
     */
-    public function __construct($code_insee)
+    public function __construct(User $user, $code_insee)
     {
         $this->setCodeInsee($code_insee);
+
+        parent::__construct($user);
     }
 
     /**

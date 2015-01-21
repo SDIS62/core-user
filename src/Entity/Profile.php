@@ -13,11 +13,30 @@ abstract class Profile
     use IdentityTrait;
 
     /**
+     * Utilisateur associé au profil
+     *
+     * @var SDIS62\Core\User\Entity\User
+     */
+    protected $user;
+
+    /**
      * Type du profil
      *
      * @var string
      */
     protected $phone_number;
+
+    /*
+    * Constructeur
+    *
+    * @param SDIS62\Core\User\Entity\User $user
+    */
+    public function __construct(User $user)
+    {
+        $this->user = $user;
+
+        $user->addProfile($this);
+    }
 
     /**
      * Get the value of Type du profil
@@ -63,5 +82,15 @@ abstract class Profile
         $this->phone_number = $phone_util->format($phone_number_parsed, PhoneNumberFormat::NATIONAL);
 
         return $this;
+    }
+
+    /**
+     * Get the value of Utilisateur associé au profil
+     *
+     * @return SDIS62\Core\User\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

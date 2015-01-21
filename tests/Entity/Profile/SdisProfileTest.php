@@ -12,16 +12,35 @@ class SdisProfileTest extends PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $mock_grade = Mockery::mock('SDIS62\Core\User\Entity\Grade', array('Lieutenant', 10))->makePartial();
-        $mock = Mockery::mock('SDIS62\Core\User\Entity\Profile\SdisProfile', array($mock_grade, 'Poste'))->makePartial();
+        $mock = Mockery::mock('SDIS62\Core\User\Entity\Profile\SdisProfile', array(
+            new Core\Entity\User('male', 'kevin', 'dubuc', 'kdubuc@sdis62.fr'),
+            'Lieutenant',
+            'Poste',
+        ))->makePartial();
 
         self::$object = $mock;
     }
 
+    public function test_if_it_have_good_implementation()
+    {
+        $this->assertInstanceOf('SDIS62\Core\User\Entity\Profile', self::$object);
+    }
+
+    public function test_if_it_have_a_user()
+    {
+        $this->assertInstanceOf('SDIS62\Core\User\Entity\User', self::$object->getUser());
+    }
+
     public function test_if_it_have_a_grade()
     {
-        self::$object->setGrade(self::$object->getGrade());
-        $this->assertInstanceOf('SDIS62\Core\User\Entity\Grade', self::$object->getGrade());
+        $this->assertEquals('Lieutenant', self::$object->getGrade());
+        $this->assertInternalType('string', self::$object->getGrade());
+    }
+
+    public function test_if_it_can_be_promoted()
+    {
+        self::$object->promote('General');
+        $this->assertEquals('General', self::$object->getGrade());
     }
 
     public function test_if_it_have_a_poste()

@@ -16,7 +16,7 @@ interface UserRepositoryInterface
     /**
      * Retourne un utilisateur correspondant à l'id spécifié
      *
-     * @param  int                          $id
+     * @param  int                          $id_user
      * @return SDIS62\Core\User\Entity\User
      */
     public function find($id_user);

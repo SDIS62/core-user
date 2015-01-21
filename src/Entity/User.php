@@ -46,14 +46,14 @@ class User
      *
      * @var string|null
      */
-    private $profile_pic_url;
+     protected $profile_pic_url;
 
     /**
      * Email
      *
      * @var string|null
      */
-    private $email;
+     protected $email;
 
     /**
      * Profils liés à l'utilisateur

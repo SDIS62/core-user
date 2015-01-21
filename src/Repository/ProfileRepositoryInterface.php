@@ -9,10 +9,10 @@ interface ProfileRepositoryInterface
     /**
      * Retourne un profil correspondant à l'id spécifié
      *
-     * @param  int                             $id
+     * @param  int                             $id_profile
      * @return SDIS62\Core\User\Entity\Profile
      */
-    public function find($id_user);
+    public function find($id_profile);
 
     /**
      * Sauvegarde d'un profil

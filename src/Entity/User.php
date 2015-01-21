@@ -312,7 +312,7 @@ class User
      * @param  SDIS62\Core\User\Entity\Profile[] $profiles
      * @return self
      */
-    public function setProfiles($profiles)
+    public function setProfiles(array $profiles)
     {
         $this->profiles->clear();
 

@@ -107,9 +107,11 @@ class UserServiceTest extends PHPUnit_Framework_TestCase
             ),
         );
 
+        $date = Datetime::createFromFormat('d-m-Y', $user_informations['birthday']);
+
         $user = self::$object->save($user_informations);
 
-        $this->assertEquals(Datetime::createFromFormat('d-m-Y', $user_informations['birthday']), $user->getBirthday());
+        $this->assertEquals($date, $user->getBirthday());
         $this->assertEquals($user_informations['gender'], $user->getGender());
         $this->assertEquals($user_informations['first_name'], $user->getFirstName());
         $this->assertEquals($user_informations['last_name'], $user->getLastName());

@@ -2,6 +2,7 @@
 
 namespace SDIS62\Core\User\Entity;
 
+use Datetime;
 use SDIS62\Core\Common\Entity\IdentityTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use SDIS62\Core\User\Exception\InvalidGenderException;
@@ -197,12 +198,12 @@ class User
      */
     public function setBirthday($birthday)
     {
-        if ($birthday instanceof \Datetime) {
+        if ($birthday instanceof Datetime) {
             $this->birthday = $birthday;
         } elseif ($birthday === null) {
             $this->birthday = null;
         } else {
-            $this->birthday = \DateTime::createFromFormat('d-m-Y', (string) $birthday);
+            $this->birthday = DateTime::createFromFormat('d-m-Y', (string) $birthday);
         }
 
         return $this;
@@ -219,7 +220,7 @@ class User
             return;
         }
 
-        $now = new \DateTime();
+        $now = new DateTime();
         $age = $this->getBirthday()->diff($now);
 
         return $age->y;

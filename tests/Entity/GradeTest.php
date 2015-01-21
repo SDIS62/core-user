@@ -1,6 +1,6 @@
 <?php
 
-namespace SDIS62\Core\User\Entity;
+namespace SDIS62\Core\User\Test\Entity;
 
 use Mockery;
 use SDIS62\Core\User as Core;

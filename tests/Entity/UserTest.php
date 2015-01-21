@@ -1,7 +1,8 @@
 <?php
 
-namespace SDIS62\Core\User\Entity;
+namespace SDIS62\Core\User\Test\Entity;
 
+use Datetime;
 use SDIS62\Core\User as Core;
 use PHPUnit_Framework_TestCase;
 
@@ -107,7 +108,7 @@ class UserTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('08', date_format(self::$object->getBirthday(), 'm'));
         $this->assertEquals('1988', date_format(self::$object->getBirthday(), 'Y'));
 
-        self::$object->setBirthday(\DateTime::createFromFormat('d-m-Y', '14-08-1988'));
+        self::$object->setBirthday(DateTime::createFromFormat('d-m-Y', '14-08-1988'));
 
         $this->assertInstanceOf('Datetime', self::$object->getBirthday());
         $this->assertEquals('14', date_format(self::$object->getBirthday(), 'd'));
@@ -121,9 +122,9 @@ class UserTest extends PHPUnit_Framework_TestCase
 
     public function test_if_it_have_an_age_when_birthday_is_setted()
     {
-        $now = new \DateTime();
+        $now = new DateTime();
         $birthday_date_raw = "14-08-1988";
-        $birthday_date_with_datetime_object = \DateTime::createFromFormat('d-m-Y', '14-08-1988');
+        $birthday_date_with_datetime_object = DateTime::createFromFormat('d-m-Y', '14-08-1988');
         $age = $birthday_date_with_datetime_object->diff($now);
 
         $this->assertNull(self::$object->getAge());
